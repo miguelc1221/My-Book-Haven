@@ -1,0 +1,19 @@
+{
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "babel/arrow-parens": 1
+  },
+  "plugins": [
+    "babel",
+    "react"
+  ]
+}

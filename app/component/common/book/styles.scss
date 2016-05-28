@@ -1,0 +1,111 @@
+@import '../../../global.scss';
+
+figure {
+    margin: 40px auto!important;
+    width: 325px;
+    height: 370px;
+    transition: background-color .8s ease;
+    position: relative;
+
+    .details-exit {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        &:hover {
+            color: $themeColor1;
+        }
+    }
+
+    .figure-content {
+        padding-top: 30px;
+    }
+
+    .book {
+        width: 325px;
+        height: 230px;
+    }
+
+    .book-img {
+        margin: 0 auto;
+        width: 130px;
+        height: 190px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .book-links {
+        margin-top: 10px;
+        text-align: center;
+        a {
+            cursor: pointer;
+            color: $themeColor1;
+            padding: 0 5px;
+            &:hover {
+                text-decoration: underline;
+            }
+            &:first-child {
+                border-right: 1px solid rgba(100, 105, 106, 0.3);
+            }
+        }
+    }
+
+    .book-content {
+        @extend .book;
+
+        .book-detail {
+            line-height: 1.5;
+            text-align: justify;;
+            padding: 35px 20px 20px 20px;
+        }
+
+        .book-info {
+            margin-top: -10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+    }
+
+    .hidden {
+        opacity: 0;
+    }
+
+    figcaption {
+        padding-top: 15px;
+        font-family: "Lato";
+        text-align: center;
+        h2 {
+            font-size: 1em;
+        }
+    }
+
+}
+
+.figure-background {
+    background-color: #ccc;
+}
+
+
+// ReactCSSTransitionGroup fade and out
+.content-enter {
+    opacity: 0.01;
+    transition: opacity .8s ease-in;
+}
+
+.content-enter.content-enter-active {
+    opacity: 1;
+}
+
+.content-leave {
+    opacity: 1;
+    transition: opacity .8s ease-in;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+.content-leave.content-leave-active {
+    opacity: 0;
+}

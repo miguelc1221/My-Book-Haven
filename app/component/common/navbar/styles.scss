@@ -1,0 +1,34 @@
+@import '../../../global.scss';
+
+nav.app-navbar.navbar.navbar-default {
+    background-color: $themeColor2;
+    border-radius: none;
+    border-color: $themeColor2;
+
+    a {
+        color: $themeColor1;
+    }
+
+    li.app-navitem a {
+        color: $themeColor1;
+        &:hover {
+            color: $themeColor4;
+        }
+    }
+
+    .app-navitem.activeLink {
+        a {
+            color: $themeColor4;
+        }
+    }
+}
+
+
+
+
+
+@media (min-width: 768px){
+    .navbar {
+        border-radius: 0 !important;
+    }
+}

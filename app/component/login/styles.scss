@@ -1,0 +1,20 @@
+@import '../../global.scss';
+
+.auth0-form-wrapper {
+    margin: 100px auto;
+    width: 300px;
+}
+
+body #a0-lock,
+body #a0-lock.a0-theme-default {
+
+    .a0-icon-container {
+        background-color: $themeColor2;
+        color: $themeColor4;
+    }
+
+    .a0-panel button.a0-primary{
+        background-color: $themeColor2 !important;
+    }
+
+}
