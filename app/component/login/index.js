@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import { bindActionCreators } from 'redux';
+import * as userActions from '../../actions/userActions';
 
 import './styles.scss';
 
@@ -26,7 +27,7 @@ class Login extends Component {
             localStorage.setItem('profile', JSON.stringify(profile.email));
             localStorage.setItem('id_token', token);
 
-            this.props.findOrCreateUser(profile.email,token);
+            this.props.userActions.findOrCreateUser(profile.email,token);
         });
     }
     render () {
@@ -38,4 +39,8 @@ class Login extends Component {
     }
 }
 
-export default connect(null,actions)(withRouter(Login));
+function mapDispatchToProps(dispatch) {
+    return { userActions: bindActionCreators(userActions, dispatch) }
+}
+
+export default connect(null,mapDispatchToProps)(withRouter(Login));

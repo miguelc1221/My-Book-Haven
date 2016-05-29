@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import appState from './appState';
+import user from './userReducer';
+import status from './statusReducer.js';
 
 const rootReducer = combineReducers({
-    appState
+    user,
+    status
 });
 
 export default rootReducer;

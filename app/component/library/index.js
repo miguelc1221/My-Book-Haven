@@ -4,7 +4,7 @@ import { Tabs, Tab } from 'react-bootstrap';
 
 class Library extends Component {
     render() {
-        const { addBook, appState: { userBooks } } = this.props;
+        const { userActions: { addBook }, user: { userBooks } } = this.props;
         let read = userBooks.filter((val) => {
             return val.read;
         });

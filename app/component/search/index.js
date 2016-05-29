@@ -22,12 +22,13 @@ class SearchPage extends Component {
         e.preventDefault()
         const token = localStorage.getItem('id_token');
         if (!this.state.book) { return null }
-        this.props.searchBooks(this.state.book, token)
+        this.props.userActions.searchBooks(this.state.book, token)
         this.setState({ book: "" })
     }
     render() {
-        const { addBook } = this.props;
-        const { searching, searchError, searchBooks } = this.props.appState;
+        const { addBook } = this.props.userActions;
+        const { searchBooks } = this.props.user;
+        const { searching, searchError } = this.props.status;
         let searchList;
         if (searching) {
             searchList = <div className="divSpinner">
@@ -57,10 +58,9 @@ class SearchPage extends Component {
 }
 
 SearchPage.propTypes = {
-    searchBooks: PropTypes.func,
-    searching: PropTypes.bool,
-    searchingError: PropTypes.bool,
-    addBook: PropTypes.func
+    status: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+    userActions: PropTypes.object.isRequired
 }
 
 

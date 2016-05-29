@@ -1,56 +1,28 @@
 import { push } from 'react-router-redux';
 import { get, post } from 'axios';
+import * as types from './types.js';
 import {
-    LOADING,
-    LOADING_COMPLETE,
-    SEARCHING,
-    SEARCH_COMPLETE,
-    SEARCH_ERROR,
-    CLEAR_ERRORS,
-    LOGIN,
-    LOGOUT,
-    SET_USER_BOOKS,
-    SET_SEARCH_BOOKS
-} from './types.js';
-
-export function isLoading() {
-    return { type: LOADING }
-}
-
-export function loadingComplete() {
-    return { type: LOADING_COMPLETE }
-}
-
-export function isSearching() {
-    return { type: SEARCHING }
-}
-
-export function searchComplete() {
-    return { type: SEARCH_COMPLETE }
-}
-
-export function searchError() {
-    return { type: SEARCH_ERROR }
-}
-
-export function clearErrors() {
-    return { type: CLEAR_ERRORS }
-}
+    isLoading,
+    loadingComplete,
+    isSearching,
+    searchComplete,
+    searchError,
+    clearErrors } from './statusActions.js';
 
 export function loggingIn() {
-    return { type: LOGIN }
+    return { type: types.LOGIN }
 }
 
 export function loggingOut() {
-    return { type: LOGOUT }
+    return { type: types.LOGOUT }
 }
 
 export function setUserBooks(books) {
-    return { type: SET_USER_BOOKS, books }
+    return { type: types.SET_USER_BOOKS, books }
 }
 
 export function setSearchBooks(books) {
-    return { type: SET_SEARCH_BOOKS, books }
+    return { type: types.SET_SEARCH_BOOKS, books }
 }
 
 
@@ -78,7 +50,7 @@ export function findOrCreateUser(email,token) {
 }
 
 // check if user is logged in
-export function isAuthenticated(email,token) {
+export function isTokenValid(email,token) {
     return (dispatch) => {
         dispatch(isLoading());
         return post('/user/me', { email: email }, {
