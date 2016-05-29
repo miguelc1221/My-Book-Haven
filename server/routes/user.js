@@ -4,10 +4,8 @@ let router = express.Router();
 
 router.post('/', (req,res) => {
     const email = req.body.email;
-
     User.findOne({ email }, (err,user) => {
         if (err) throw err;
-
         // If user doesn't exist, create one
         if (!user) {
             const newUser = new User({
@@ -20,7 +18,6 @@ router.post('/', (req,res) => {
             })
             return res.status(201).json(newUser);
         }
-
         res.status(201).json(user);
     })
 });
@@ -33,12 +30,33 @@ router.post('/books', (req,res) => {
     User.findOne({ email: email }, (err,user) => {
         if (err) return res.status(404).json({Error: "Error has occured"});
         if (!user) return res.status(404).json({Error: "User does not exist"});
-
-        user.books.push(book);
-        user.save();
+        // check if book exist
+        let bookIdx = user.books.findIndex((val) => {
+            return (val.title === book.title) && (val.author === book.author)
+        });
+        if (bookIdx < 0) { // if doesn't exist, add it
+            user.books.push(book)
+        } else {
+            user.books.splice(bookIdx,1,book) // else replace it
+        }
+        user.save()
         return res.status(201).json(user)
     })
 })
+
+router.delete('/books', (req,res) => {
+    const email = req.body.email;
+    const book = req.body.book;
+    User.findOne({ email: email }, (err,user) => {
+        if (err) return res.status(404).json({Error: 'Error has occured'});
+        if (!user) return res.status(404).json({Error: 'User does not exist'});
+        // check if book exist
+        user.books.pull(book);
+        console.log(user.books);
+        user.save()
+        res.status(201).json({Message: 'Book added', books: user.books })
+    })
+});
 
 router.post('/me', (req,res) => {
     const email = req.body.email;

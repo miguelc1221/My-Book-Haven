@@ -25,6 +25,14 @@ export function setSearchBooks(books) {
     return { type: types.SET_SEARCH_BOOKS, books }
 }
 
+export function addingBook(book) {
+    return { type: types.ADD_BOOK, book }
+}
+
+export function deletingBook(book) {
+    return { type: types.DELETE_BOOK, book }
+}
+
 
 //Thunks
 //Find user, if not create one
