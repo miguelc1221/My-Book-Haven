@@ -10,3 +10,7 @@ $themeColor5: #F9F7F7;
 body {
     background-color: $themeColor5;
 }
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    outline: 0
+}

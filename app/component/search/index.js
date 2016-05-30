@@ -25,8 +25,14 @@ class SearchPage extends Component {
         this.props.userActions.searchBooks(this.state.book, token)
         this.setState({ book: "" })
     }
-    render() {
+    handleAddbook(book) {
+        const token = localStorage.getItem('id_token');
+        const profile = localStorage.getItem('profile');
+        const email = JSON.parse(profile);
         const { addBook } = this.props.userActions;
+        return addBook(book,email,token)
+    }
+    render() {
         const { searchBooks } = this.props.user;
         const { searching, searchError } = this.props.status;
         let searchList;
@@ -37,7 +43,7 @@ class SearchPage extends Component {
         } else if (searchError) {
             searchList = <div className="alert alert-danger searchError">No book matched your search, Please try again.</div>
         } else {
-            searchList = <BookList books={searchBooks} addBook={addBook}/>
+            searchList = <BookList books={searchBooks} addBook={this.handleAddbook.bind(this)}/>
         }
         return (
             <div>

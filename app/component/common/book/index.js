@@ -12,15 +12,15 @@ class Book extends Component {
         this.setState({ showDetails: !this.state.showDetails })
     }
     addReadBook() {
-        let books = this.props.BookObj;
-        books.read = true;
-        books.planToRead = false;
-        return this.props.addBook(books)
+        let book = this.props.BookObj;
+        book.read = true;
+        book.planToRead = false;
+        return this.props.addBook(book)
     }
     addPlanToRead() {
         let book = this.props.BookObj;
-        books.read = false;
-        books.planToRead = true;
+        book.read = false;
+        book.planToRead = true;
         return this.props.addBook(book)
     }
     render() {

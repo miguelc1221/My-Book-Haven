@@ -13,9 +13,9 @@ export default function(state = initialState, action) {
         case types.LOADING_COMPLETE:
             return { ...state, isLoading: false }
         case types.SEARCHING:
-            return { ...state, SEARCHING: true }
+            return { ...state, searching: true }
         case types.SEARCH_COMPLETE:
-            return { ...state, SEARCH_COMPLETE: false }
+            return { ...state, searching: false }
         case types.SEARCH_ERROR:
             return { ...state, searchError: true }
         case types.CLEAR_ERRORS:

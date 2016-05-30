@@ -105,22 +105,21 @@ export function searchBooks(book, token) {
     }
 }
 
-export function addBook(book) {
+export function addBook(book, email, token) {
     return (dispatch) => {
-        const token = localStorage.getItem('id_token');
-        const profile = localStorage.getItem('profile');
-        const email = JSON.parse(profile);
+        dispatch(isLoading());
         return post('/user/books', { book: book, email: email }, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
         })
         .then((res) => {
-            console.log(res);
-            // this.searchResults = res.data;
+            console.log(book)
+            dispatch(loadingComplete());
+            dispatch(addingBook(book));
         })
         .catch((err) => {
-            console.log(err);
+            dispatch(loadingComplete());
         })
     }
 }

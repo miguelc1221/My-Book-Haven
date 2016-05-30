@@ -17,16 +17,22 @@ export default function(state = initialState, action) {
         case types.SET_SEARCH_BOOKS:
             return { ...state, searchBooks: action.books };
         case types.ADD_BOOK:
+            let _userBooks;
             let book = state.userBooks.findIndex((val) => {
                 return (val.title === action.book.title) && (val.author === action.book.author)
             });
-            let _userBooks = state.userBooks.splice(book,1,action.payload)
+            if (book < 0) {
+                _userBooks = state.userBooks.concat(action.book)
+            } else {
+                _userBooks = state.userBooks;
+                state.userBooks.splice(book,1,action.book)
+            }
             return { ...state, userBooks: _userBooks };
         case types.DELETE_BOOK:
             let filteredBooks = state.userBooks.filter((val) => {
                 return (val.title !== action.book.title) && (val.author !== action.book.author)
             });
-            return Object.assign({}, state, {userBooks: filteredBooks });
+            return {...state, userBooks: filteredBooks };
         default:
             return state;
     }
