@@ -50,9 +50,12 @@ router.delete('/books', (req,res) => {
     User.findOne({ email: email }, (err,user) => {
         if (err) return res.status(404).json({Error: 'Error has occured'});
         if (!user) return res.status(404).json({Error: 'User does not exist'});
-        // check if book exist
-        user.books.pull(book);
-        console.log(user.books);
+        // get book index and delete
+        let bookIdx = user.books.findIndex((val) => {
+            return val._id === id;
+        });
+        user.books.splice(bookIdx,1);
+
         user.save()
         res.status(201).json({Message: 'Book added', books: user.books })
     })

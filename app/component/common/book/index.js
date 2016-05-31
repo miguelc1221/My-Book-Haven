@@ -7,24 +7,32 @@ class Book extends Component {
     constructor(props) {
         super(props);
         this.state = { showDetails: false }
+
+        this.OnDetailsClick = this.OnDetailsClick.bind(this);
+        this.addToHaveRead = this.addToHaveRead.bind(this);
+        this.addToWillRead = this.addToWillRead.bind(this);
+        this.deleteBook = this.deleteBook.bind(this);
     }
-    handleOnDetailsClick() {
+    OnDetailsClick() {
         this.setState({ showDetails: !this.state.showDetails })
     }
-    addReadBook() {
-        let book = this.props.BookObj;
-        book.read = true;
-        book.planToRead = false;
-        return this.props.addBook(book)
+    addToHaveRead() {
+        let book = this.props.book;
+        book.haveRead = true;
+        book.willRead = false;
+        this.props.addBook(book)
     }
-    addPlanToRead() {
-        let book = this.props.BookObj;
-        book.read = false;
-        book.planToRead = true;
-        return this.props.addBook(book)
+    addToWillRead() {
+        let book = this.props.book;
+        book.haveRead = false;
+        book.willRead = true;
+        this.props.addBook(book)
+    }
+    deleteBook(book) {
+        this.props.deleteBook(book)
     }
     render() {
-        const { image, description, publisher, pages, date, preview, title, author } = this.props.BookObj;
+        const { image, description, publisher, pages, date, preview, title, author } = this.props.book;
         const { showDetails } = this.state;
         const imageUrl = (image) ? image : "../img/Book_cover_not_available.jpg";
         let contentShow;
@@ -44,15 +52,21 @@ class Book extends Component {
                                 <div className='book-img' style={{'backgroundImage': `url(${imageUrl})`}}></div>
                                 <div className='book-links'>
                                     <a href={preview} target='blank'>preview</a>
-                                    <a onClick={this.handleOnDetailsClick.bind(this)}>details</a>
+                                    <a onClick={this.OnDetailsClick}>details</a>
                                 </div>
                             </div>
+        }
+        let deleteButton;
+        if (this.props.deleteBook) {
+            deleteButton = <Button onClick={this.deleteBook} bsStyle="danger">Delete</Button>
+        } else {
+            deleteButton = null;
         }
         return (
             <figure className={ showDetails ? 'figure-background' : null }>
                 <div
                     className={ showDetails ? 'details-exit' : 'hidden'}
-                    onClick={this.handleOnDetailsClick.bind(this)}>
+                    onClick={this.OnDetailsClick}>
                     <Glyphicon glyph="remove" />
                 </div>
                 <div className='figure-content'>
@@ -65,8 +79,9 @@ class Book extends Component {
                     <figcaption>
                         <h2>{title}</h2>
                         <p>{author}</p>
-                        <Button onClick={this.addReadBook.bind(this)}>Read</Button>
-                        <Button onClick={this.addPlanToRead.bind(this)}>Future Read</Button>
+                        <Button bsStyle="primary" onClick={this.addToHaveRead}>Add to have read</Button>
+                        <Button bsStyle="primary" onClick={this.addToWillRead}>Add to will read</Button>
+                        { deleteButton }
                     </figcaption>
                 </div>
             </figure>

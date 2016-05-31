@@ -13,8 +13,8 @@ const userSchema = new Schema({
             date: {type: String },
             title: {type: String },
             pages: {type: String },
-            read: { type: Boolean },
-            planToRead: { type: Boolean }
+            haveRead: { type: Boolean },
+            willRead: { type: Boolean }
         }
     ]
 });

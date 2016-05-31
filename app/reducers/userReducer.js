@@ -18,14 +18,16 @@ export default function(state = initialState, action) {
             return { ...state, searchBooks: action.books };
         case types.ADD_BOOK:
             let _userBooks;
+
             let book = state.userBooks.findIndex((val) => {
                 return (val.title === action.book.title) && (val.author === action.book.author)
             });
-            if (book < 0) {
+
+            if (book < 0) { // if book doesn't exist, add it
                 _userBooks = state.userBooks.concat(action.book)
             } else {
                 _userBooks = state.userBooks;
-                state.userBooks.splice(book,1,action.book)
+                state.userBooks.splice(book,1,action.book) // if book exist, replace it
             }
             return { ...state, userBooks: _userBooks };
         case types.DELETE_BOOK:

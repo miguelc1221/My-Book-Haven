@@ -120,6 +120,10 @@ export function addBook(book, email, token) {
         })
         .catch((err) => {
             dispatch(loadingComplete());
+            if (err.status === 401) {
+                dispatch(loggingOut());
+                return dispatch(push('/'));
+            }
         })
     }
 }

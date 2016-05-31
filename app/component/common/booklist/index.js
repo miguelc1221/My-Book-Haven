@@ -7,8 +7,9 @@ const BookList = (props) => {
             return (
                 <Col xs={12} md={4} key={ind}>
                     <Book
-                        BookObj={val}
+                        book={val}
                         addBook={props.addBook}
+                        deleteBook={props.deleteBook}
                         />
                 </Col>
             )

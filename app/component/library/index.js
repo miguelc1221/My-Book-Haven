@@ -12,31 +12,35 @@ class Library extends Component {
         const token = localStorage.getItem('id_token');
         const profile = localStorage.getItem('profile');
         const email = JSON.parse(profile);
-        const { addBook } = this.props.userActions;
-        return addBook(book,email,token)
+
+        this.props.userActions.addBook(book,email,token)
+    }
+
+    deleteBook() {
+        // delete action
+        console.log('hi')
     }
 
     render() {
         const { userActions: { addBook }, user: { userBooks } } = this.props;
-        let read = userBooks.filter((val) => {
-            return val.read;
+        let haveRead = userBooks.filter((val) => {
+            return val.haveRead;
         });
-        let planToRead = userBooks.filter((val) => {
-            return val.planToRead;
+        let willRead = userBooks.filter((val) => {
+            return val.willRead;
         });
-                    console.log(userBooks)
 
         return (
             <div className="container">
                 <Tabs defaultActiveKey={1} id="controlled-tab-example">
                     <Tab eventKey={1} title="All">
-                        <BookList books={userBooks} addBook={this.handleAddbook} />
+                        <BookList books={userBooks} addBook={this.handleAddbook} deleteBook={this.deleteBook} />
                     </Tab>
                     <Tab eventKey={2} title="Read">
-                        <BookList books={read} addBook={this.handleAddbook} />
+                        <BookList books={haveRead} addBook={this.handleAddbook} deleteBook={this.deleteBook} />
                     </Tab>
                     <Tab eventKey={3} title="Plan on Reading">
-                        <BookList books={planToRead} addBook={this.handleAddbook} />
+                        <BookList books={willRead} addBook={this.handleAddbook} deleteBook={this.deleteBook}/>
                     </Tab>
                 </Tabs>
             </div>

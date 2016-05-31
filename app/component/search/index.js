@@ -14,11 +14,15 @@ class SearchPage extends Component {
         super(props);
 
         this.state = { book: "" }
+
+        this.handleOnChange = this.handleOnChange.bind(this);
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+        this.handleAddbook = this.handleAddbook.bind(this);
     }
     handleOnChange(e) {
         this.setState({ book: e.target.value })
     }
-    onSubmit(e) {
+    handleOnSubmit(e) {
         e.preventDefault()
         const token = localStorage.getItem('id_token');
         if (!this.state.book) { return null }
@@ -29,8 +33,7 @@ class SearchPage extends Component {
         const token = localStorage.getItem('id_token');
         const profile = localStorage.getItem('profile');
         const email = JSON.parse(profile);
-        const { addBook } = this.props.userActions;
-        return addBook(book,email,token)
+        this.props.userActions.addBook(book,email,token)
     }
     render() {
         const { searchBooks } = this.props.user;
@@ -43,14 +46,14 @@ class SearchPage extends Component {
         } else if (searchError) {
             searchList = <div className="alert alert-danger searchError">No book matched your search, Please try again.</div>
         } else {
-            searchList = <BookList books={searchBooks} addBook={this.handleAddbook.bind(this)}/>
+            searchList = <BookList books={searchBooks} addBook={this.handleAddbook}/>
         }
         return (
             <div>
-                <form onSubmit={this.onSubmit.bind(this)}>
+                <form onSubmit={this.handleOnSubmit}>
                     <FormGroup className="lib-form">
                         <InputGroup>
-                            <FormControl type="text" value={this.state.book} placeholder="Book or Author" onChange={this.handleOnChange.bind(this)} />
+                            <FormControl type="text" value={this.state.book} placeholder="Book or Author" onChange={this.handleOnChange} />
                             <InputGroup.Button>
                                 <Button type="submit">Search</Button>
                             </InputGroup.Button>
