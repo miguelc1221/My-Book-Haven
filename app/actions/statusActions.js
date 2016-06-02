@@ -1,5 +1,13 @@
 import * as types from './types.js';
 
+export function loggingIn() {
+    return { type: types.LOGIN }
+}
+
+export function loggingOut() {
+    return { type: types.LOGOUT }
+}
+
 export function isLoading() {
     return { type: types.LOADING }
 }

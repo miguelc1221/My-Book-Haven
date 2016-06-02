@@ -1,6 +1,7 @@
 import * as types from '../actions/types';
 
 let initialState = {
+    isLoggedIn: false,
     isLoading: false,
     searching: false,
     searchError: false
@@ -8,6 +9,10 @@ let initialState = {
 
 export default function(state = initialState, action) {
     switch(action.type) {
+        case types.LOGIN:
+            return { ...state, isLoggedIn: true };
+        case types.LOGOUT:
+            return { ...state, isLoggedIn: false };
         case types.LOADING:
             return { ...state, isLoading: true }
         case types.LOADING_COMPLETE:

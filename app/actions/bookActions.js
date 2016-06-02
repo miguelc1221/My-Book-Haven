@@ -2,20 +2,14 @@ import { push } from 'react-router-redux';
 import { get, post } from 'axios';
 import * as types from './types.js';
 import {
+    loggingIn,
+    loggingOut,
     isLoading,
     loadingComplete,
     isSearching,
     searchComplete,
     searchError,
     clearErrors } from './statusActions.js';
-
-export function loggingIn() {
-    return { type: types.LOGIN }
-}
-
-export function loggingOut() {
-    return { type: types.LOGOUT }
-}
 
 export function setUserBooks(books) {
     return { type: types.SET_USER_BOOKS, books }

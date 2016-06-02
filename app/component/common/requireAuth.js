@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as userActions from '../../actions/userActions';
+import * as bookActions from '../../actions/bookActions';
 import * as statusActions from '../../actions/statusActions';
 
 export default function (ComposedComponent) {
@@ -16,9 +16,9 @@ export default function (ComposedComponent) {
             // if user is not loggedIn
             // if there is a token, check if valid, if not valid push home
             // if no token, push home
-            if (!this.props.user.isLoggedIn) {
+            if (!this.props.status.isLoggedIn) {
                 if (token) {
-                    this.props.userActions.isTokenValid(email,token);
+                    this.props.bookActions.isTokenValid(email,token);
                 } else {
                     this.props.router.push('/');
                 }
@@ -33,14 +33,14 @@ export default function (ComposedComponent) {
 
     function mapStateToProps(state) {
         return {
-            user: state.user,
+            book: state.book,
             status: state.status
         }
     }
 
     function mapDispatchToProps(dispatch) {
         return {
-            userActions: bindActionCreators(userActions, dispatch),
+            bookActions: bindActionCreators(bookActions, dispatch),
             statusActions: bindActionCreators(statusActions, dispatch)
         }
     }

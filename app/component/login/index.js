@@ -3,7 +3,7 @@ import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as userActions from '../../actions/userActions';
+import * as bookActions from '../../actions/bookActions';
 
 import './styles.scss';
 
@@ -27,7 +27,7 @@ class Login extends Component {
             localStorage.setItem('profile', JSON.stringify(profile.email));
             localStorage.setItem('id_token', token);
 
-            this.props.userActions.findOrCreateUser(profile.email,token);
+            this.props.bookActions.findOrCreateUser(profile.email,token);
         });
     }
     render () {
@@ -40,7 +40,7 @@ class Login extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return { userActions: bindActionCreators(userActions, dispatch) }
+    return { bookActions: bindActionCreators(bookActions, dispatch) }
 }
 
 export default connect(null,mapDispatchToProps)(withRouter(Login));

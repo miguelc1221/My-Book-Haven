@@ -13,7 +13,7 @@ class Library extends Component {
         const profile = localStorage.getItem('profile');
         const email = JSON.parse(profile);
 
-        this.props.userActions.addBook(book,email,token)
+        this.props.bookActions.addBook(book,email,token)
     }
 
     deleteBook() {
@@ -22,7 +22,7 @@ class Library extends Component {
     }
 
     render() {
-        const { userActions: { addBook }, user: { userBooks } } = this.props;
+        const { bookActions: { addBook }, book: { userBooks } } = this.props;
         let haveRead = userBooks.filter((val) => {
             return val.haveRead;
         });

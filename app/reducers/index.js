@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import user from './userReducer';
-import status from './statusReducer.js';
+import book from './bookReducer';
+import status from './statusReducer';
 
 const rootReducer = combineReducers({
-    user,
+    book,
     status
 });
 

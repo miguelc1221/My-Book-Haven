@@ -26,17 +26,17 @@ class SearchPage extends Component {
         e.preventDefault()
         const token = localStorage.getItem('id_token');
         if (!this.state.book) { return null }
-        this.props.userActions.searchBooks(this.state.book, token)
+        this.props.bookActions.searchBooks(this.state.book, token)
         this.setState({ book: "" })
     }
     handleAddbook(book) {
         const token = localStorage.getItem('id_token');
         const profile = localStorage.getItem('profile');
         const email = JSON.parse(profile);
-        this.props.userActions.addBook(book,email,token)
+        this.props.bookActions.addBook(book,email,token)
     }
     render() {
-        const { searchBooks } = this.props.user;
+        const { searchBooks } = this.props.book;
         const { searching, searchError } = this.props.status;
         let searchList;
         if (searching) {
@@ -68,8 +68,8 @@ class SearchPage extends Component {
 
 SearchPage.propTypes = {
     status: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
-    userActions: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    bookActions: PropTypes.object.isRequired
 }
 
 

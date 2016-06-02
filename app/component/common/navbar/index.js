@@ -3,7 +3,7 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as userActions from '../../../actions/userActions';
+import * as statusActions from '../../../actions/statusActions';
 
 import './styles.scss';
 
@@ -11,7 +11,7 @@ class AppNavBar extends Component {
     logOut() {
         localStorage.removeItem('id_token');
         localStorage.removeItem('profile');
-        this.props.userActions.loggingOut();
+        this.props.statusActions.loggingOut();
         return this.props.router.push('/');
     }
 
@@ -21,7 +21,7 @@ class AppNavBar extends Component {
         let searchActive = (pathname === '/search') ? ' activeLink' : "";
         let logActive = (pathname === '/login') ? ' activeLink' : "";
         let userLoggedIn;
-        if (this.props.user.isLoggedIn) {
+        if (this.props.status.isLoggedIn) {
             userLoggedIn =  <Nav pullRight>
                                 <NavItem
                                     className={'app-navitem' + searchActive }
@@ -70,16 +70,16 @@ AppNavBar.propTypes = {
     router: PropTypes.shape({
         push: PropTypes.func.isRequired
     }),
-    user: PropTypes.object.isRequired,
-    userActions: PropTypes.object.isRequired
+    status: PropTypes.object.isRequired,
+    statusActions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
-    return { user: state.user }
+    return { status: state.status }
 }
 
 function mapDispatchToProps(dispatch) {
-    return { userActions: bindActionCreators(userActions, dispatch) }
+    return { statusActions: bindActionCreators(statusActions, dispatch) }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(AppNavBar));
