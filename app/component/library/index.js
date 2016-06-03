@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import BookList from '../common/booklist';
 import { Tabs, Tab } from 'react-bootstrap';
+import './styles.scss';
 
 class Library extends Component {
     constructor(props) {
@@ -26,21 +27,21 @@ class Library extends Component {
         let haveRead = userBooks.filter((val) => {
             return val.haveRead;
         });
-        let willRead = userBooks.filter((val) => {
-            return val.willRead;
+        let recommended = userBooks.filter((val) => {
+            return val.recommended;
         });
 
         return (
-            <div className="container">
+            <div className="container app-library">
                 <Tabs defaultActiveKey={1} id="controlled-tab-example">
                     <Tab eventKey={1} title="All">
                         <BookList books={userBooks} addBook={this.handleAddbook} deleteBook={this.deleteBook} />
                     </Tab>
-                    <Tab eventKey={2} title="Read">
+                    <Tab eventKey={2} title="Have Read">
                         <BookList books={haveRead} addBook={this.handleAddbook} deleteBook={this.deleteBook} />
                     </Tab>
-                    <Tab eventKey={3} title="Plan on Reading">
-                        <BookList books={willRead} addBook={this.handleAddbook} deleteBook={this.deleteBook}/>
+                    <Tab eventKey={3} title="Recommended">
+                        <BookList books={recommended} addBook={this.handleAddbook} deleteBook={this.deleteBook}/>
                     </Tab>
                 </Tabs>
             </div>

@@ -14,7 +14,7 @@ const userSchema = new Schema({
             title: {type: String },
             pages: {type: String },
             haveRead: { type: Boolean },
-            willRead: { type: Boolean }
+            recommended: { type: Boolean }
         }
     ]
 });

@@ -1,7 +1,8 @@
 @import '~normalize.css/normalize';
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
 
-$themeColor1: #4AC6B7;
-$themeColor2: #4F5E7F;
+$themeColor1: #1A1A1B;
+$themeColor2: #FFFFFF;
 $themeColor3: #965F8A;
 $themeColor4: #FF7070;
 $themeColor5: #F9F7F7;
@@ -9,6 +10,22 @@ $themeColor5: #F9F7F7;
 
 body {
     background-color: $themeColor5;
+    font-family: 'Inconsolata', helvetica, sans-serif;
+}
+
+.flex-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    background-color: #ccc;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {

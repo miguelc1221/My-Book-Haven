@@ -4,13 +4,14 @@ nav.app-navbar.navbar.navbar-default {
     background-color: $themeColor2;
     border-radius: none;
     border-color: $themeColor2;
+    margin: 0;
+    font-weight: bold;
 
     a {
         color: $themeColor1;
     }
 
     li.app-navitem a {
-        color: $themeColor1;
         &:hover {
             color: $themeColor4;
         }
@@ -23,9 +24,9 @@ nav.app-navbar.navbar.navbar-default {
     }
 }
 
-
-
-
+.navbar-brand {
+    font-size: 2em;
+}
 
 @media (min-width: 768px){
     .navbar {

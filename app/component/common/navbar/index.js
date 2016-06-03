@@ -54,7 +54,7 @@ class AppNavBar extends Component {
             <Navbar className='app-navbar'>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to="/">Book Manager</Link>
+                        <Link to="/">My Book Haven</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>

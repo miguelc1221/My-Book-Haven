@@ -10,7 +10,7 @@ class Book extends Component {
 
         this.OnDetailsClick = this.OnDetailsClick.bind(this);
         this.addToHaveRead = this.addToHaveRead.bind(this);
-        this.addToWillRead = this.addToWillRead.bind(this);
+        this.addToRecommended = this.addToRecommended.bind(this);
         this.deleteBook = this.deleteBook.bind(this);
     }
     OnDetailsClick() {
@@ -19,13 +19,13 @@ class Book extends Component {
     addToHaveRead() {
         let book = this.props.book;
         book.haveRead = true;
-        book.willRead = false;
+        book.recommended = false;
         this.props.addBook(book)
     }
-    addToWillRead() {
+    addToRecommended() {
         let book = this.props.book;
         book.haveRead = false;
-        book.willRead = true;
+        book.recommended = true;
         this.props.addBook(book)
     }
     deleteBook(book) {
@@ -79,8 +79,8 @@ class Book extends Component {
                     <figcaption>
                         <h2>{title}</h2>
                         <p>{author}</p>
-                        <Button bsStyle="primary" onClick={this.addToHaveRead}>Add to have read</Button>
-                        <Button bsStyle="primary" onClick={this.addToWillRead}>Add to will read</Button>
+                        <Button bsStyle="primary" onClick={this.addToHaveRead}>Have Read</Button>
+                        <Button bsStyle="primary" onClick={this.addToRecommended}>Recommended</Button>
                         { deleteButton }
                     </figcaption>
                 </div>
