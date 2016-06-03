@@ -8,18 +8,22 @@ class Library extends Component {
         super(props);
 
         this.handleAddbook = this.handleAddbook.bind(this)
+        this.deleteBook = this.deleteBook.bind(this)
     }
+
     handleAddbook(book) {
         const token = localStorage.getItem('id_token');
         const profile = localStorage.getItem('profile');
         const email = JSON.parse(profile);
-
         this.props.bookActions.addBook(book,email,token)
     }
 
-    deleteBook() {
-        // delete action
-        console.log('hi')
+    deleteBook(book) {
+        const token = localStorage.getItem('id_token');
+        const profile = localStorage.getItem('profile');
+        const email = JSON.parse(profile);
+        console.log(book._id)
+        this.props.bookActions.deleteBook(book,email,token)
     }
 
     render() {
@@ -31,9 +35,12 @@ class Library extends Component {
             return val.recommended;
         });
 
+        // console.log(userBooks)
+        console.log(haveRead)
+
         return (
             <div className="container app-library">
-                <Tabs defaultActiveKey={1}>
+                <Tabs defaultActiveKey={1} id="controlled-tab-example">
                     <Tab eventKey={1} title="All">
                         <BookList books={userBooks} addBook={this.handleAddbook} deleteBook={this.deleteBook} />
                     </Tab>

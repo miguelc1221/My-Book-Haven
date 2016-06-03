@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux';
-import { get, post } from 'axios';
+import axios from 'axios';
 import * as types from './types.js';
 import {
     loggingIn,
@@ -33,7 +33,7 @@ export function deletingBook(book) {
 export function findOrCreateUser(email,token) {
     return (dispatch) => {
         dispatch(isLoading());
-        return post('/user', { email: email }, {
+        return axios.post('/user', { email: email }, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -55,13 +55,12 @@ export function findOrCreateUser(email,token) {
 export function isTokenValid(email,token) {
     return (dispatch) => {
         dispatch(isLoading());
-        return post('/user/me', { email: email }, {
+        return axios.post('/user/me', { email: email }, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
         })
         .then((res) => {
-            console.log(res)
             dispatch(loadingComplete());
             dispatch(clearErrors());
             dispatch(loggingIn());
@@ -79,7 +78,7 @@ export function isTokenValid(email,token) {
 export function searchBooks(book, token) {
     return (dispatch) => {
         dispatch(isSearching());
-        return post('/books', { book: book }, {
+        return axios.post('/books', { book: book }, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -103,7 +102,7 @@ export function searchBooks(book, token) {
 export function addBook(book, email, token) {
     return (dispatch) => {
         dispatch(isLoading());
-        return post('/user/books', { book: book, email: email }, {
+        return axios.post('/user/books', { book: book, email: email }, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -111,6 +110,29 @@ export function addBook(book, email, token) {
         .then((res) => {
             dispatch(loadingComplete());
             dispatch(addingBook(book));
+        })
+        .catch((err) => {
+            dispatch(loadingComplete());
+            if (err.status === 401) {
+                dispatch(loggingOut());
+                return dispatch(push('/'));
+            }
+        })
+    }
+}
+
+// delete book
+export function deleteBook(book, email, token) {
+    return (dispatch) => {
+        dispatch(isLoading());
+        return axios.delete(`/user/books/${book._id}/${email}`, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+        .then((res) => {
+            dispatch(loadingComplete());
+            dispatch(deletingBook(book));
         })
         .catch((err) => {
             dispatch(loadingComplete());

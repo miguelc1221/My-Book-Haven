@@ -28,8 +28,9 @@ class Book extends Component {
         book.recommended = true;
         this.props.addBook(book)
     }
-    deleteBook(book) {
-        this.props.deleteBook(book)
+    deleteBook() {
+        let book = this.props.book;
+        this.props.deleteBook(book);
     }
     render() {
         const { image, description, publisher, pages, date, preview, title, author } = this.props.book;

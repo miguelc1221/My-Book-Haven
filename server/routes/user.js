@@ -44,20 +44,21 @@ router.post('/books', (req,res) => {
     })
 })
 
-router.delete('/books', (req,res) => {
-    const email = req.body.email;
-    const book = req.body.book;
+router.delete('/books/:id/:email', (req,res) => {
+    const id = req.params.id;
+    const email = req.params.email;
     User.findOne({ email: email }, (err,user) => {
         if (err) return res.status(404).json({Error: 'Error has occured'});
         if (!user) return res.status(404).json({Error: 'User does not exist'});
-        // get book index and delete
+
         let bookIdx = user.books.findIndex((val) => {
-            return val._id === id;
+            return val._id.toString() === id.toString();
         });
-        user.books.splice(bookIdx,1);
+
+        user.books.splice(bookIdx,1)
 
         user.save()
-        res.status(201).json({Message: 'Book Deleted', books: user.books })
+        res.status(201).json({Message: 'Book added', books: user.books })
     })
 });
 
