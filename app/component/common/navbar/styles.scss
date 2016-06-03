@@ -1,31 +1,31 @@
 @import '../../../global.scss';
 
 nav.app-navbar.navbar.navbar-default {
-    background-color: $themeColor2;
+    background-color: $themeColor1;
     border-radius: none;
-    border-color: $themeColor2;
+    border-color: $themeColor1;
     margin: 0;
     font-weight: bold;
 
     a {
-        color: $themeColor1;
+        color: $themeColor4;
     }
 
     li.app-navitem a {
         &:hover {
-            color: $themeColor4;
+            color: $themeColor3;
         }
     }
 
     .app-navitem.activeLink {
         a {
-            color: $themeColor4;
+            color: $themeColor3;
         }
     }
 }
 
 .navbar-brand {
-    font-size: 2em;
+    font-size: 1.5em !important;
 }
 
 @media (min-width: 768px){

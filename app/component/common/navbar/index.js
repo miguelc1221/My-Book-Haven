@@ -46,7 +46,7 @@ class AppNavBar extends Component {
                                 <NavItem
                                     className={'app-navitem' + logActive}
                                     onClick={()=>this.props.router.push('/login')}>
-                                    Log in
+                                    Log In
                                 </NavItem>
                             </Nav>
         }

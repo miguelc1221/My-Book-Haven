@@ -53,7 +53,7 @@ class SearchPage extends Component {
                 <form onSubmit={this.handleOnSubmit}>
                     <FormGroup className="lib-form">
                         <InputGroup>
-                            <FormControl type="text" value={this.state.book} placeholder="Book or Author" onChange={this.handleOnChange} />
+                            <FormControl type="text" value={this.state.book} placeholder="Book" onChange={this.handleOnChange} />
                             <InputGroup.Button>
                                 <Button type="submit">Search</Button>
                             </InputGroup.Button>

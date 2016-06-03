@@ -33,7 +33,7 @@ class Library extends Component {
 
         return (
             <div className="container app-library">
-                <Tabs defaultActiveKey={1} id="controlled-tab-example">
+                <Tabs defaultActiveKey={1}>
                     <Tab eventKey={1} title="All">
                         <BookList books={userBooks} addBook={this.handleAddbook} deleteBook={this.deleteBook} />
                     </Tab>

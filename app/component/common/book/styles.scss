@@ -2,8 +2,8 @@
 
 figure {
     margin: 40px auto!important;
-    width: 325px;
-    height: 370px;
+    width: 320px;
+    height: 420px;
     transition: background-color .8s ease;
     position: relative;
 
@@ -14,7 +14,7 @@ figure {
         cursor: pointer;
         font-size: 18px;
         &:hover {
-            color: $themeColor1;
+            color: $themeColor3;
         }
     }
 
@@ -23,7 +23,7 @@ figure {
     }
 
     .book {
-        width: 325px;
+        width: 320px;
         height: 230px;
     }
 
@@ -41,7 +41,7 @@ figure {
         text-align: center;
         a {
             cursor: pointer;
-            color: $themeColor1;
+            color: $themeColor3;
             padding: 0 5px;
             &:hover {
                 text-decoration: underline;
@@ -74,18 +74,22 @@ figure {
     }
 
     figcaption {
-        padding-top: 15px;
+        padding-top: 5px;
         font-family: "Lato";
         text-align: center;
         h2 {
             font-size: 1em;
+        }
+
+        .btn {
+            margin: 5px 5px 0 0;
         }
     }
 
 }
 
 .figure-background {
-    background-color: #ccc;
+    background-color: $themeColor1;
 }
 
 

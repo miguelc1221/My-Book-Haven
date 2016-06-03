@@ -1,3 +1,14 @@
+@import '../../global.scss';
+
 .app-library {
     margin-top: 50px;
+
+
+    li a {
+        color: $themeColor4;
+        &:hover {
+            background-color: #dedede;
+        }
+    }
+
 }

@@ -16,9 +16,9 @@ router.post('/', (req,res) => {
                     return res.status(404).json({Error: "Error has occured"});
                 }
             })
-            return res.status(201).json(newUser);
+            return res.status(201).json({ Message: "User created", books: newUser.books });
         }
-        res.status(201).json(user);
+        return res.status(201).json({ Message: "User Authenticated", books: user.books });
     })
 });
 
@@ -40,7 +40,7 @@ router.post('/books', (req,res) => {
             user.books.splice(bookIdx,1,book) // else replace it
         }
         user.save()
-        return res.status(201).json(user)
+        res.status(201).json({ Message: 'Book Added' });
     })
 })
 
@@ -57,7 +57,7 @@ router.delete('/books', (req,res) => {
         user.books.splice(bookIdx,1);
 
         user.save()
-        res.status(201).json({Message: 'Book added', books: user.books })
+        res.status(201).json({Message: 'Book Deleted', books: user.books })
     })
 });
 
@@ -65,8 +65,8 @@ router.post('/me', (req,res) => {
     const email = req.body.email;
     User.findOne({ email: email }, (err,user) => {
         if (err) return res.status(404).json({ Error: "Error has occured" });
-        if (!user) return res.status(404).json({ Error: "wrong user email" });
-        return res.status(201).json(user);
+        if (!user) return res.status(404).json({ Error: "Wrong user email" });
+        return res.status(201).json({ Message: "User Authenticated", books: user.books });
     })
 })
 

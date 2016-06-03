@@ -61,6 +61,7 @@ export function isTokenValid(email,token) {
             }
         })
         .then((res) => {
+            console.log(res)
             dispatch(loadingComplete());
             dispatch(clearErrors());
             dispatch(loggingIn());
@@ -108,7 +109,6 @@ export function addBook(book, email, token) {
             }
         })
         .then((res) => {
-            console.log(book)
             dispatch(loadingComplete());
             dispatch(addingBook(book));
         })

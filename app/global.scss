@@ -1,11 +1,11 @@
 @import '~normalize.css/normalize';
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
 
-$themeColor1: #1A1A1B;
-$themeColor2: #FFFFFF;
-$themeColor3: #965F8A;
-$themeColor4: #FF7070;
-$themeColor5: #F9F7F7;
+$themeColor1: #FFFFFF;
+$themeColor2: #E2E1D9;
+$themeColor3: #FF5A09;
+$themeColor4: #3e3e3e;
+$themeColor5: #F1F1F1;
 
 
 body {
@@ -25,7 +25,9 @@ main {
 
 footer {
     text-align: center;
-    background-color: #ccc;
+    color: $themeColor4;
+    padding-top: 10px;
+    background-color: $themeColor2;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {

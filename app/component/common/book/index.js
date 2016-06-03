@@ -79,8 +79,8 @@ class Book extends Component {
                     <figcaption>
                         <h2>{title}</h2>
                         <p>{author}</p>
-                        <Button bsStyle="primary" onClick={this.addToHaveRead}>Have Read</Button>
-                        <Button bsStyle="primary" onClick={this.addToRecommended}>Recommended</Button>
+                        <Button className="app-book-button" bsStyle="primary" onClick={this.addToHaveRead}>Have Read</Button>
+                        <Button className="app-book-button" bsStyle="primary" onClick={this.addToRecommended}>Recommended</Button>
                         { deleteButton }
                     </figcaption>
                 </div>
