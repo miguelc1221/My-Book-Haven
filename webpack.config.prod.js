@@ -19,6 +19,12 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.$': 'jquery',
+            'window.jQuery': 'jquery'
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compressor: {
                 warnings: false

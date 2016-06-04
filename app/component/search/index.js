@@ -6,6 +6,7 @@ import {
     FormControl
 } from 'react-bootstrap';
 import { RingLoader } from 'halogen';
+import toastr from 'toastr';
 import BookList from '../common/booklist';
 import './styles.scss';
 
@@ -33,6 +34,7 @@ class SearchPage extends Component {
         const token = localStorage.getItem('id_token');
         const profile = localStorage.getItem('profile');
         const email = JSON.parse(profile);
+        toastr.success('Book Added');
         this.props.bookActions.addBook(book,email,token)
     }
     render() {
@@ -67,9 +69,9 @@ class SearchPage extends Component {
 }
 
 SearchPage.propTypes = {
-    status: PropTypes.object.isRequired,
-    book: PropTypes.object.isRequired,
-    bookActions: PropTypes.object.isRequired
+    status: PropTypes.object,
+    book: PropTypes.object,
+    bookActions: PropTypes.object
 }
 
 

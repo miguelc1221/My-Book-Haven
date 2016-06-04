@@ -40,7 +40,8 @@ class Book extends Component {
         if (showDetails) {
             contentShow =   <div className='book-content' key={1}>
                                 <p className='book-detail'>
-                                    {(description.length > 179) ? description.slice(0,179) + "..." : description}
+
+                                    {(description) ? description.slice(0,179) + "..." : description}
                                 </p>
                                 <div className="book-info">
                                     <p>{date}</p>
@@ -88,6 +89,12 @@ class Book extends Component {
             </figure>
         )
     }
+}
+
+Book.propTypes = {
+    deleteBook: PropTypes.func,
+    addBook: PropTypes.func.isRequired,
+    book: PropTypes.object.isRequired
 }
 
 export default Book

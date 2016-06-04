@@ -22,7 +22,6 @@ class Library extends Component {
         const token = localStorage.getItem('id_token');
         const profile = localStorage.getItem('profile');
         const email = JSON.parse(profile);
-        console.log(book._id)
         this.props.bookActions.deleteBook(book,email,token)
     }
 
@@ -34,9 +33,6 @@ class Library extends Component {
         let recommended = userBooks.filter((val) => {
             return val.recommended;
         });
-
-        // console.log(userBooks)
-        console.log(haveRead)
 
         return (
             <div className="container app-library">
@@ -54,6 +50,11 @@ class Library extends Component {
             </div>
         )
     }
+}
+
+Library.propTypes = {
+    book: PropTypes.object.isRequired,
+    bookActions: PropTypes.object.isRequired
 }
 
 export default Library;

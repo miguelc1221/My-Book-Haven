@@ -23,4 +23,10 @@ const BookList = (props) => {
     )
 }
 
+BookList.propTypes = {
+    deleteBook: PropTypes.func,
+    addBook: PropTypes.func.isRequired,
+    books: PropTypes.array.isRequired
+}
+
 export default BookList;

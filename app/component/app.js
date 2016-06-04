@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 require('../global.scss');
 require('bootstrap/dist/css/bootstrap.css');
+require('toastr/build/toastr.min.css');
 
 import AppNavBar from './common/navbar';
 
