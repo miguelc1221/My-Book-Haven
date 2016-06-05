@@ -7,21 +7,27 @@ class Library extends Component {
     constructor(props) {
         super(props);
 
-        this.handleAddbook = this.handleAddbook.bind(this)
-        this.deleteBook = this.deleteBook.bind(this)
+        this.addToHaveRead = this.addToHaveRead.bind(this);
+        this.addToRecommended = this.addToRecommended.bind(this);
+        this.deleteBook = this.deleteBook.bind(this);
     }
 
-    handleAddbook(book) {
-        const token = localStorage.getItem('id_token');
-        const profile = localStorage.getItem('profile');
-        const email = JSON.parse(profile);
-        this.props.bookActions.addBook(book,email,token)
+    addToHaveRead(book) {
+        const { credentials: { email, token } } = this.props.status;
+        book.haveRead = true;
+        book.recommended = false;
+        this.props.bookActions.addBook(book,email,token);
+    }
+
+    addToRecommended(book) {
+        const { credentials: { email, token } } = this.props.status;
+        book.haveRead = false;
+        book.recommended = true;
+        this.props.bookActions.addBook(book,email,token);
     }
 
     deleteBook(book) {
-        const token = localStorage.getItem('id_token');
-        const profile = localStorage.getItem('profile');
-        const email = JSON.parse(profile);
+        const { credentials: { email, token } } = this.props.status;
         this.props.bookActions.deleteBook(book,email,token)
     }
 
@@ -38,13 +44,23 @@ class Library extends Component {
             <div className="container app-library">
                 <Tabs defaultActiveKey={1} id="controlled-tab-example">
                     <Tab eventKey={1} title="All">
-                        <BookList books={userBooks} addBook={this.handleAddbook} deleteBook={this.deleteBook} />
+                        <BookList
+                            books={userBooks}
+                            addToHaveRead={this.addToHaveRead}
+                            addToRecommended={this.addToRecommended}
+                            deleteBook={this.deleteBook} />
                     </Tab>
                     <Tab eventKey={2} title="Have Read">
-                        <BookList books={haveRead} addBook={this.handleAddbook} deleteBook={this.deleteBook} />
+                        <BookList
+                            books={haveRead}
+                            addToRecommended={this.addToRecommended}
+                            deleteBook={this.deleteBook} />
                     </Tab>
                     <Tab eventKey={3} title="Recommended">
-                        <BookList books={recommended} addBook={this.handleAddbook} deleteBook={this.deleteBook}/>
+                        <BookList
+                            books={recommended}
+                            addToHaveRead={this.addToHaveRead}
+                            deleteBook={this.deleteBook}/>
                     </Tab>
                 </Tabs>
             </div>
@@ -53,8 +69,23 @@ class Library extends Component {
 }
 
 Library.propTypes = {
+    status: PropTypes.object,
     book: PropTypes.object.isRequired,
     bookActions: PropTypes.object.isRequired
 }
 
 export default Library;
+
+
+    // addToHaveRead() {
+    //     let book = this.props.book;
+    //     book.haveRead = true;
+    //     book.recommended = false;
+    //     this.props.addBook(book)
+    // }
+    // addToRecommended() {
+    //     let book = this.props.book;
+    //     book.haveRead = false;
+    //     book.recommended = true;
+    //     this.props.addBook(book)
+    // }

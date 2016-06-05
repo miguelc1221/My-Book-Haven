@@ -58,7 +58,7 @@ router.delete('/books/:id/:email', (req,res) => {
         user.books.splice(bookIdx,1)
 
         user.save()
-        res.status(201).json({Message: 'Book added', books: user.books })
+        res.status(201).json({Message: 'Book Deleted', books: user.books })
     })
 });
 

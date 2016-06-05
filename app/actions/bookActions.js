@@ -41,7 +41,7 @@ export function findOrCreateUser(email,token) {
         .then((res)=> {
             dispatch(loadingComplete());
             dispatch(clearErrors());
-            dispatch(loggingIn());
+            dispatch(loggingIn(email,token));
             dispatch(setUserBooks(res.data.books));
             dispatch(push('/'));
         })
@@ -63,7 +63,7 @@ export function isTokenValid(email,token) {
         .then((res) => {
             dispatch(loadingComplete());
             dispatch(clearErrors());
-            dispatch(loggingIn());
+            dispatch(loggingIn(email,token));
             dispatch(setUserBooks(res.data.books));
         })
         .catch((err) => {
@@ -100,7 +100,7 @@ export function searchBooks(book, token) {
 }
 
 export function addBook(book, email, token) {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(isLoading());
         return axios.post('/user/books', { book: book, email: email }, {
             headers: {

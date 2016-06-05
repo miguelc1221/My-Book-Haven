@@ -1,6 +1,10 @@
 import * as types from '../actions/types';
 
 let initialState = {
+    credentials: {
+        token: "",
+        email: ""
+    },
     isLoggedIn: false,
     isLoading: false,
     searching: false,
@@ -10,9 +14,9 @@ let initialState = {
 export default function(state = initialState, action) {
     switch(action.type) {
         case types.LOGIN:
-            return { ...state, isLoggedIn: true };
+            return { ...state, isLoggedIn: true, credentials: { email: action.email, token: action.token } };
         case types.LOGOUT:
-            return { ...state, isLoggedIn: false };
+            return { ...state, isLoggedIn: false, credentials: { email: "", token: "" } };
         case types.LOADING:
             return { ...state, isLoading: true }
         case types.LOADING_COMPLETE:

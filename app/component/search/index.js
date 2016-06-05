@@ -18,7 +18,8 @@ class SearchPage extends Component {
 
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
-        this.handleAddbook = this.handleAddbook.bind(this);
+        this.addToHaveRead = this.addToHaveRead.bind(this);
+        this.addToRecommended = this.addToRecommended.bind(this);
     }
     handleOnChange(e) {
         this.setState({ book: e.target.value })
@@ -30,26 +31,40 @@ class SearchPage extends Component {
         this.props.bookActions.searchBooks(this.state.book, token)
         this.setState({ book: "" })
     }
-    handleAddbook(book) {
-        const token = localStorage.getItem('id_token');
-        const profile = localStorage.getItem('profile');
-        const email = JSON.parse(profile);
+    addToHaveRead(book) {
+        const { credentials: { email, token } } = this.props.status;
+        book.haveRead = true;
+        book.recommended = false;
         toastr.success('Book Added');
-        this.props.bookActions.addBook(book,email,token)
+        this.props.bookActions.addBook(book,email,token);
     }
-    render() {
+
+    addToRecommended(book) {
+        const { credentials: { email, token } } = this.props.status;
+        book.haveRead = false;
+        book.recommended = true;
+        toastr.success('Book Added');
+        this.props.bookActions.addBook(book,email,token);
+    }
+    searchList() {
         const { searchBooks } = this.props.book;
         const { searching, searchError } = this.props.status;
-        let searchList;
         if (searching) {
-            searchList = <div className="divSpinner">
-                            <RingLoader className="spinner" color="#4F5E7F" size="40px" />
-                        </div>
+            return  <div className="divSpinner">
+                        <RingLoader className="spinner" color="#4F5E7F" size="40px" />
+                    </div>
         } else if (searchError) {
-            searchList = <div className="alert alert-danger searchError">No book matched your search, Please try again.</div>
+            return  <div className="alert alert-danger searchError">
+                        No book matched your search, Please try again.
+                    </div>
         } else {
-            searchList = <BookList books={searchBooks} addBook={this.handleAddbook}/>
+            return <BookList
+                        books={searchBooks}
+                        addToHaveRead={this.addToHaveRead}
+                        addToRecommended={this.addToRecommended}/>
         }
+    }
+    render() {
         return (
             <div>
                 <form onSubmit={this.handleOnSubmit}>
@@ -62,7 +77,7 @@ class SearchPage extends Component {
                         </InputGroup>
                     </FormGroup>
                 </form>
-                { searchList }
+                { this.searchList() }
             </div>
         );
     }

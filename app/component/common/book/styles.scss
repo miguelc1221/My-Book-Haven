@@ -1,91 +1,92 @@
 @import '../../../global.scss';
 
 figure {
-    margin: 40px auto!important;
+    margin: 40px auto !important;
     width: 320px;
     height: 420px;
     transition: background-color .8s ease;
     position: relative;
 
-    .details-exit {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        cursor: pointer;
-        font-size: 18px;
-        &:hover {
-            color: $themeColor3;
-        }
-    }
-
     .figure-content {
         padding-top: 30px;
     }
 
-    .book {
-        width: 320px;
-        height: 230px;
-    }
+}
 
-    .book-img {
-        margin: 0 auto;
-        width: 130px;
-        height: 190px;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
+.book {
+    width: 320px;
+    height: 230px;
+}
 
-    .book-links {
-        margin-top: 10px;
-        text-align: center;
-        a {
-            cursor: pointer;
-            color: $themeColor3;
-            padding: 0 5px;
-            &:hover {
-                text-decoration: underline;
-            }
-            &:first-child {
-                border-right: 1px solid rgba(100, 105, 106, 0.3);
-            }
+.hidden {
+    opacity: 0;
+}
+
+.book-img {
+    margin: 0 auto;
+    width: 130px;
+    height: 190px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.details-exit {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    &:hover {
+        color: $themeColor3;
+    }
+}
+
+.book-links {
+    margin-top: 10px;
+    text-align: center;
+    a {
+        cursor: pointer;
+        color: $themeColor3;
+        padding: 0 5px;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:first-child {
+            border-right: 1px solid rgba(100, 105, 106, 0.3);
         }
     }
+}
 
-    .book-content {
-        @extend .book;
+.book-content {
+    @extend .book;
 
-        .book-detail {
-            line-height: 1.5;
-            text-align: justify;;
-            padding: 35px 20px 20px 20px;
-        }
-
-        .book-info {
-            margin-top: -10px;
-            text-align: center;
-            font-weight: bold;
-        }
-
+    .book-detail {
+        line-height: 1.5;
+        padding: 15px 10px 5px 20px;
     }
 
-    .hidden {
-        opacity: 0;
+    .book-info {
+        padding-left: 20px;
+        font-weight: bold;
     }
 
-    figcaption {
-        padding-top: 5px;
-        font-family: "Lato";
-        text-align: center;
-        h2 {
-            font-size: 1em;
-        }
+}
 
-        .btn {
-            margin: 5px 5px 0 0;
-        }
+figcaption {
+    font-family: "Lato";
+    text-align: center;
+    h2 {
+        font-size: 1em;
     }
 
+    .btn {
+        margin: 5px 5px 0 0;
+    }
+}
+
+.glyphicon.glyphicon-plus,.glyphicon.glyphicon-remove {
+    padding-right: 5px;
 }
 
 .figure-background {

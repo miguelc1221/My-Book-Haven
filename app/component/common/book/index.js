@@ -9,61 +9,91 @@ class Book extends Component {
         this.state = { showDetails: false }
 
         this.OnDetailsClick = this.OnDetailsClick.bind(this);
-        this.addToHaveRead = this.addToHaveRead.bind(this);
-        this.addToRecommended = this.addToRecommended.bind(this);
         this.deleteBook = this.deleteBook.bind(this);
+        this.addHaveRead = this.addHaveRead.bind(this);
+        this.addRecommended = this.addRecommended.bind(this);
     }
     OnDetailsClick() {
         this.setState({ showDetails: !this.state.showDetails })
     }
-    addToHaveRead() {
-        let book = this.props.book;
-        book.haveRead = true;
-        book.recommended = false;
-        this.props.addBook(book)
+    contentShow() {
+        const { image, description, publisher, pages, date, preview } = this.props.book;
+        const imageUrl = (image) ? image : "../img/Book_cover_not_available.jpg";
+        if (this.state.showDetails) {
+            return <div className='book-content' key={1}>
+                        <p className='book-detail'>
+
+                            {(description) ? description.slice(0,200) + "..." : description}
+                        </p>
+                        <div className="book-info">
+                            <p>{date}</p>
+                            <p>{publisher}</p>
+                            <p>{pages} pages</p>
+                        </div>
+                    </div>
+        } else {
+            return <div className='book' key={2}>
+                        <div className='book-img' style={{'backgroundImage': `url(${imageUrl})`}}></div>
+                        <div className='book-links'>
+                            <a href={preview} target='blank'>preview</a>
+                            <a onClick={this.OnDetailsClick}>details</a>
+                        </div>
+                    </div>
+        }
     }
-    addToRecommended() {
-        let book = this.props.book;
-        book.haveRead = false;
-        book.recommended = true;
-        this.props.addBook(book)
+    removeButton() {
+        if (this.props.deleteBook) {
+            return  <Button
+                        className="remove"
+                        onClick={this.deleteBook}
+                        bsStyle="danger">
+                        <Glyphicon glyph="remove" />
+                            Remove
+                    </Button>
+        }
+        return null;
     }
+
+    haveReadButton() {
+        if (this.props.addToHaveRead) {
+            return  <Button
+                        className="app-book-button"
+                        bsStyle="primary"
+                        onClick={this.addHaveRead}>
+                        <Glyphicon glyph="plus" />
+                            Have Read
+                    </Button>
+        }
+        return null;
+    }
+
+    recommendedButton() {
+        if (this.props.addToRecommended) {
+            return  <Button
+                        className="app-book-button"
+                        bsStyle="primary"
+                        onClick={this.addRecommended}>
+                        <Glyphicon glyph="plus" />
+                            Recommended
+                    </Button>
+        }
+        return null;
+    }
+
     deleteBook() {
-        let book = this.props.book;
-        this.props.deleteBook(book);
+        return this.props.deleteBook(this.props.book);
+    }
+    addHaveRead(){
+        return this.props.addToHaveRead(this.props.book)
+    }
+    addRecommended() {
+        return this.props.addToRecommended(this.props.book)
     }
     render() {
-        const { image, description, publisher, pages, date, preview, title, author } = this.props.book;
+        const { title, author } = this.props.book;
+        const { addToRecommended, addToHaveRead } = this.props;
         const { showDetails } = this.state;
-        const imageUrl = (image) ? image : "../img/Book_cover_not_available.jpg";
-        let contentShow;
-        if (showDetails) {
-            contentShow =   <div className='book-content' key={1}>
-                                <p className='book-detail'>
 
-                                    {(description) ? description.slice(0,179) + "..." : description}
-                                </p>
-                                <div className="book-info">
-                                    <p>{date}</p>
-                                    <p>{publisher}</p>
-                                    <p>{pages} pages</p>
-                                </div>
-                            </div>
-        } else {
-            contentShow =   <div className='book' key={2}>
-                                <div className='book-img' style={{'backgroundImage': `url(${imageUrl})`}}></div>
-                                <div className='book-links'>
-                                    <a href={preview} target='blank'>preview</a>
-                                    <a onClick={this.OnDetailsClick}>details</a>
-                                </div>
-                            </div>
-        }
-        let deleteButton;
-        if (this.props.deleteBook) {
-            deleteButton = <Button onClick={this.deleteBook} bsStyle="danger">Delete</Button>
-        } else {
-            deleteButton = null;
-        }
         return (
             <figure className={ showDetails ? 'figure-background' : null }>
                 <div
@@ -76,25 +106,26 @@ class Book extends Component {
                         transitionName='content'
                         transitionEnterTimeout={500}
                         transitionLeaveTimeout={500}>
-                        { contentShow }
-                   </ReactCSSTransitionGroup>
+                            { this.contentShow() }
+                    </ReactCSSTransitionGroup>
                     <figcaption>
                         <h2>{title}</h2>
                         <p>{author}</p>
-                        <Button className="app-book-button" bsStyle="primary" onClick={this.addToHaveRead}>Have Read</Button>
-                        <Button className="app-book-button" bsStyle="primary" onClick={this.addToRecommended}>Recommended</Button>
-                        { deleteButton }
+                        { this.haveReadButton() }
+                        { this.recommendedButton() }
+                        { this.removeButton() }
                     </figcaption>
                 </div>
             </figure>
-        )
+        );
     }
 }
 
 Book.propTypes = {
     deleteBook: PropTypes.func,
-    addBook: PropTypes.func.isRequired,
+    addToHaveRead: PropTypes.func,
+    addToRecommended: PropTypes.func,
     book: PropTypes.object.isRequired
 }
 
-export default Book
+export default Book;

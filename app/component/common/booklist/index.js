@@ -2,14 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import Book from '../book';
 
-const BookList = (props) => {
-    const list = props.books.map((val,ind) => {
+const BookList = ({ addToHaveRead, addToRecommended, deleteBook, books }) => {
+    const list = books.map((val,idx) => {
             return (
-                <Col xs={12} md={4} key={ind}>
+                <Col xs={12} md={4} key={idx}>
                     <Book
                         book={val}
-                        addBook={props.addBook}
-                        deleteBook={props.deleteBook}
+                        addToHaveRead={addToHaveRead}
+                        addToRecommended={addToRecommended}
+                        deleteBook={deleteBook}
                         />
                 </Col>
             )
@@ -25,7 +26,8 @@ const BookList = (props) => {
 
 BookList.propTypes = {
     deleteBook: PropTypes.func,
-    addBook: PropTypes.func.isRequired,
+    addToHaveRead: PropTypes.func,
+    addToRecommended: PropTypes.func,
     books: PropTypes.array.isRequired
 }
 

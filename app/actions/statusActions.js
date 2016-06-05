@@ -1,7 +1,7 @@
 import * as types from './types.js';
 
-export function loggingIn() {
-    return { type: types.LOGIN }
+export function loggingIn(email, token) {
+    return { type: types.LOGIN, email, token }
 }
 
 export function loggingOut() {
