@@ -15,7 +15,7 @@ const Home = () => {
                     <Col xs={12} md={6}>
                         <img src="../img/books.png" />
                         <h2>About</h2>
-                        <p>My Book Haven is a book manager app built with React/Redux/React-Router, ExpressJS and MongoDB. The purpose of this project was to build an app where I can keep track of books that were recommended (which I always seem to forget) and to practice developing with my favorite tech stack. As a registered user you can search for any book and add it your library. Your books will be organized by books you already read and books that were recommended. </p>
+                    <p>My Book Haven is a book manager app built with React, Redux, React-Router, ExpressJS and MongoDB. The purpose of this project was to build an app where I can keep track of books that were recommended (which I always seem to forget) and to practice developing with my favorite tech stack. As a registered user you can search for any book and add it your library. Your books will be organized by books you already read and books that were recommended. </p>
                     </Col>
                     <Col xs={12} md={6}>
                         <img src="../img/Facebook.png" />

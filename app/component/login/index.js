@@ -39,6 +39,10 @@ class Login extends Component {
     }
 }
 
+Login.propTypes = {
+    bookActions: PropTypes.object.isRequired
+}
+
 function mapDispatchToProps(dispatch) {
     return { bookActions: bindActionCreators(bookActions, dispatch) }
 }

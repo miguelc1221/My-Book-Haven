@@ -21,9 +21,11 @@ class SearchPage extends Component {
         this.addToHaveRead = this.addToHaveRead.bind(this);
         this.addToRecommended = this.addToRecommended.bind(this);
     }
+
     handleOnChange(e) {
         this.setState({ book: e.target.value })
     }
+
     handleOnSubmit(e) {
         e.preventDefault()
         const token = localStorage.getItem('id_token');
@@ -31,11 +33,18 @@ class SearchPage extends Component {
         this.props.bookActions.searchBooks(this.state.book, token)
         this.setState({ book: "" })
     }
+
     addToHaveRead(book) {
         const { credentials: { email, token } } = this.props.status;
         book.haveRead = true;
         book.recommended = false;
-        toastr.success('Book Added');
+        let bookIdx = this.props.book.userBooks.findIndex((val) => {
+            return val.description === book.description;
+        });
+        if (bookIdx > -1) {
+            return toastr.warning('Book already exist in library', null, {"positionClass": "toast-top-left"});
+        }
+        toastr.success('Book Added', null, {"positionClass": "toast-top-left"});
         this.props.bookActions.addBook(book,email,token);
     }
 
@@ -43,9 +52,16 @@ class SearchPage extends Component {
         const { credentials: { email, token } } = this.props.status;
         book.haveRead = false;
         book.recommended = true;
+        let bookIdx = this.props.book.userBooks.findIndex((val) => {
+            return val.description === book.description;
+        });
+        if (bookIdx > -1) {
+            return toastr.warning('Book already exist in library', null, {"positionClass": "toast-top-left"});
+        }
         toastr.success('Book Added');
         this.props.bookActions.addBook(book,email,token);
     }
+
     searchList() {
         const { searchBooks } = this.props.book;
         const { searching, searchError } = this.props.status;
@@ -64,13 +80,14 @@ class SearchPage extends Component {
                         addToRecommended={this.addToRecommended}/>
         }
     }
+
     render() {
         return (
             <div>
                 <form onSubmit={this.handleOnSubmit}>
                     <FormGroup className="lib-form">
                         <InputGroup>
-                            <FormControl type="text" value={this.state.book} placeholder="Book" onChange={this.handleOnChange} />
+                            <FormControl type="text" value={this.state.book} placeholder="Book or Author" onChange={this.handleOnChange} />
                             <InputGroup.Button>
                                 <Button type="submit">Search</Button>
                             </InputGroup.Button>

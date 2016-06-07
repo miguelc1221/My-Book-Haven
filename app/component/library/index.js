@@ -75,17 +75,3 @@ Library.propTypes = {
 }
 
 export default Library;
-
-
-    // addToHaveRead() {
-    //     let book = this.props.book;
-    //     book.haveRead = true;
-    //     book.recommended = false;
-    //     this.props.addBook(book)
-    // }
-    // addToRecommended() {
-    //     let book = this.props.book;
-    //     book.haveRead = false;
-    //     book.recommended = true;
-    //     this.props.addBook(book)
-    // }

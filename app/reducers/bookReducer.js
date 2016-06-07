@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
             let _userBooks;
 
             let book = state.userBooks.findIndex((val) => {
-                return (val.title === action.book.title) && (val.author === action.book.author)
+                return val.description === action.book.description;
             });
 
             if (book < 0) { // if book doesn't exist, add it
@@ -27,9 +27,9 @@ export default function(state = initialState, action) {
             return { ...state, userBooks: _userBooks };
         case types.DELETE_BOOK:
             let filteredBooks = state.userBooks.filter((val) => {
-                return (val.title !== action.book.title) && (val.author !== action.book.author)
+                return val.description !== action.book.description;
             });
-            return {...state, userBooks: filteredBooks };
+            return { ...state, userBooks: filteredBooks };
         default:
             return state;
     }

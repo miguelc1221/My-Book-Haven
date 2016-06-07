@@ -13,9 +13,11 @@ class Book extends Component {
         this.addHaveRead = this.addHaveRead.bind(this);
         this.addRecommended = this.addRecommended.bind(this);
     }
+
     OnDetailsClick() {
         this.setState({ showDetails: !this.state.showDetails })
     }
+
     contentShow() {
         const { image, description, publisher, pages, date, preview } = this.props.book;
         const imageUrl = (image) ? image : "../img/Book_cover_not_available.jpg";
@@ -41,6 +43,7 @@ class Book extends Component {
                     </div>
         }
     }
+
     removeButton() {
         if (this.props.deleteBook) {
             return  <Button
@@ -83,12 +86,15 @@ class Book extends Component {
     deleteBook() {
         return this.props.deleteBook(this.props.book);
     }
+
     addHaveRead(){
         return this.props.addToHaveRead(this.props.book)
     }
+
     addRecommended() {
         return this.props.addToRecommended(this.props.book)
     }
+
     render() {
         const { title, author } = this.props.book;
         const { addToRecommended, addToHaveRead } = this.props;

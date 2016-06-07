@@ -14,7 +14,8 @@ const BookList = ({ addToHaveRead, addToRecommended, deleteBook, books }) => {
                         />
                 </Col>
             )
-        })
+    });
+
     return (
         <Grid>
             <Row className="show-grid">

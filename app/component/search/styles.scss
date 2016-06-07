@@ -22,3 +22,21 @@
     margin: 100px auto;
     width: 40px;
 }
+
+@media screen and (max-width: 415px) {
+    .lib-form {
+        width: 360px;
+    }
+    .searchError {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .lib-form {
+        width: 300px;
+    }
+    .searchError {
+        width: 300px;
+    }
+}

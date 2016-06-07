@@ -7,7 +7,7 @@
     "build:webpack": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "start": "node server_es6.js",
-    "lint": "eslint src",
+    "lint": "eslint app",
     "test": "NODE_ENV=production mocha --require ./test/setup.js test/**/*.test.js",
     "test:watch": "npm test -- --watch"
   },
