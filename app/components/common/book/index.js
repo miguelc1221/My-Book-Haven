@@ -20,7 +20,7 @@ class Book extends Component {
 
     contentShow() {
         const { image, description, publisher, pages, date, preview } = this.props.book;
-        const imageUrl = (image) ? image : "../img/Book_cover_not_available.jpg";
+        const imageUrl = (image) ? image : "../img/no-cover.png";
         if (this.state.showDetails) {
             return <div className='book-content' key={1}>
                         <p className='book-detail'>
