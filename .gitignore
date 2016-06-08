@@ -10,3 +10,6 @@ build
 
 # Webstorm IDE
 .idea/
+
+.env
+Procfile
