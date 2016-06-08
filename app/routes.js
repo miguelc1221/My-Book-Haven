@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './component/app.js';
-import Home from './component/home';
-import Login from './component/login';
-import SearchPage from './component/search';
-import library from './component/library';
+import App from './components/app.js';
+import Home from './components/home';
+import Login from './components/login';
+import SearchPage from './components/search';
+import library from './components/library';
 
-import requireAuth from './component/common/requireAuth';
+import requireAuth from './components/common/requireAuth';
 
 export default (
     <Route path='/' component={ App } >
