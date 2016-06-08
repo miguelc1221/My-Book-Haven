@@ -11,19 +11,10 @@ The purpose of this project was to build an app where I can keep track of books 
 * ExpressJs
 * MongoDB
 
-###Getting Started###
-
-```
-    > fork
-    > git clone git@github.com:miguelc1221/Book-Manager.git
-    > cd book-manager
-    > npm install
-    > npm start
-```
 ##Don't want to register? No Problem!##
 
 ```
-  Guest email: Guest@gmail.com
+  Guest email: Guest1221@gmail.com
   Guest Password: 123456
 ```
 ##In Progress##
