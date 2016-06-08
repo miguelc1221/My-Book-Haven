@@ -15,7 +15,7 @@ const compiler = webpack(config);
 const isProduction = process.env.NODE_ENV === 'production';
 
 const authCheck = jwt({
-    secret: new Buffer('3krSEjgSnc1LH7TFyQvmbovPWupNzXngK5kyjKZHjxBwd-xRMopobq_Cn7S2CcUS', 'base64'),
+    secret: new Buffer(serverConfig.authCheck, 'base64'),
     audience: 'BjlDBoIyhcstbiblQiyiV3g1vd8xffhR'
 });
 
