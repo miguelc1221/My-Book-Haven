@@ -58,7 +58,7 @@ class SearchPage extends Component {
         if (bookIdx > -1) {
             return toastr.warning('Book already exist in library', null, {"positionClass": "toast-top-left"});
         }
-        toastr.success('Book Added');
+        toastr.success('Book Added', null, {"positionClass": "toast-top-left"});
         this.props.bookActions.addBook(book,email,token);
     }
 

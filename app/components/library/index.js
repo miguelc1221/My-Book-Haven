@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import BookList from '../common/booklist';
 import { Tabs, Tab } from 'react-bootstrap';
+import toastr from 'toastr';
 import './styles.scss';
 
 class Library extends Component {
@@ -16,6 +17,7 @@ class Library extends Component {
         const { credentials: { email, token } } = this.props.status;
         book.haveRead = true;
         book.recommended = false;
+        toastr.success('Book added to have read', null, {"positionClass": "toast-top-left"});
         this.props.bookActions.addBook(book,email,token);
     }
 
@@ -23,11 +25,13 @@ class Library extends Component {
         const { credentials: { email, token } } = this.props.status;
         book.haveRead = false;
         book.recommended = true;
+        toastr.success('Book added to recommended', null, {"positionClass": "toast-top-left"});
         this.props.bookActions.addBook(book,email,token);
     }
 
     deleteBook(book) {
         const { credentials: { email, token } } = this.props.status;
+        toastr.success('Book removed', null, {"positionClass": "toast-top-left"});
         this.props.bookActions.deleteBook(book,email,token)
     }
 
