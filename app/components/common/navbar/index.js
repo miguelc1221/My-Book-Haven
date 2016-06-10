@@ -7,7 +7,12 @@ import * as statusActions from '../../../actions/statusActions';
 
 import './styles.scss';
 
-class AppNavBar extends Component {
+export class AppNavBar extends Component {
+    constructor(props) {
+        super(props);
+
+        this.logOut = this.logOut.bind(this);
+    }
     logOut() {
         localStorage.removeItem('id_token');
         localStorage.removeItem('profile');
@@ -35,7 +40,7 @@ class AppNavBar extends Component {
                                 </NavItem>
                                 <NavItem
                                     className='app-navitem'
-                                    onClick={this.logOut.bind(this)}
+                                    onClick={this.logOut}
                                     >
                                     Logout
                                 </NavItem>
@@ -68,8 +73,9 @@ class AppNavBar extends Component {
 
 AppNavBar.propTypes = {
     router: PropTypes.shape({
-        push: PropTypes.func.isRequired
+        push: PropTypes.func
     }),
+    location: PropTypes.object,
     status: PropTypes.object.isRequired,
     statusActions: PropTypes.object.isRequired
 }

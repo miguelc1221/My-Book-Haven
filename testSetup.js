@@ -17,7 +17,7 @@ require('babel-register')();
 
 // Disable webpack-specific features for tests since
 // Mocha doesn't know what to do with them.
-require.extensions['.css'] = function () {return null;};
+require.extensions['.css', '.scss'] = function () {return null;};
 require.extensions['.png'] = function () {return null;};
 require.extensions['.jpg'] = function () {return null;};
 
@@ -41,3 +41,4 @@ global.navigator = {
 };
 
 documentRef = document;  //eslint-disable-line no-undef
+
