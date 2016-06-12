@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
             return { ...state, userBooks: _userBooks };
         case types.DELETE_BOOK:
             let filteredBooks = state.userBooks.filter((val) => {
-                return val.description !== action.book.description;
+                return ((val.description !== action.book.description) && (val.author !== action.book.author));
             });
             return { ...state, userBooks: filteredBooks };
         default:

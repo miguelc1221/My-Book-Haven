@@ -57,11 +57,20 @@ describe('Navbar component', () => {
     });
 
     
-    it('passes logOut to NavItem', () => {
+    it('should pass logOut to NavItem', () => {
         const wrapper = setUp(true);
         const navItem = wrapper.findWhere((n) => n.type() === NavItem && n.contains('Logout'))
         const logOut = wrapper.instance().logOut;
-        expect(navItem.prop('onClick')).to.eql(logOut);
+        expect(navItem.prop('onClick')).to.equal(logOut);
     });
+
+    
+    it('should handle onClick', () => {
+        const navClick = sinon.spy();
+        const wrapper = mount(<NavItem onClick={navClick}/>)
+        wrapper.find('a').simulate('click');
+        expect(navClick.calledOnce).to.equal(true);
+    });
+    
     
 });
