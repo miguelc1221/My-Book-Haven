@@ -8,6 +8,7 @@ const Home = () => {
         <section>
             <Jumbotron className='app-jumbotron'>
                 <h1>My Book Haven</h1>
+                <h3>Book Manager</h3>
                 <div className="overlay"></div>
             </Jumbotron>
             <Grid>
@@ -20,7 +21,7 @@ const Home = () => {
                     <Col xs={12} md={6}>
                         <img src="../img/facebook.png" />
                         <h2>Social Login</h2>
-                        <p>My Book Haven uses auth0 to authenticate users. New users have the option of creating a new account or logging in with their Facebook or Google accounts.</p>
+                        <p>My Book Haven uses auth0 to authenticate users. New users have the options of creating a new account or logging in with their Facebook or Google accounts.</p>
                     </Col>
                 </Row>
             </Grid>
