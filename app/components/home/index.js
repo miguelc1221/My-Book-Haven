@@ -22,6 +22,8 @@ const Home = () => {
                         <img src="../img/facebook.png" />
                         <h2>Social Login</h2>
                         <p>My Book Haven uses auth0 to authenticate users. New users have the options of creating a new account or logging in with their Facebook or Google accounts.</p>
+                        <p className="guest"><span className="guest-span">Guest Email:</span> Guest1221@gmail.com</p>
+                        <p className="guest"><span className="guest-span">Guest Password:</span> 123456</p>
                     </Col>
                 </Row>
             </Grid>
