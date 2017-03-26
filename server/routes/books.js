@@ -1,6 +1,5 @@
-import express from 'express';
-import books from 'google-books-search';
-
+const express = require('express');
+const books = require('google-books-search')
 let router = express.Router();
 
 router.post('/', (req,res) => {
@@ -38,4 +37,4 @@ router.post('/', (req,res) => {
 
 
 
-export default router;
+module.exports = router;

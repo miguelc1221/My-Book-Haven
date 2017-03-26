@@ -1,13 +1,12 @@
-import path from 'path';
-import express from 'express';
-import webpack from 'webpack';
-import config from '../webpack.config.dev.js';
-import cors from 'cors';
-import serverConfig from './config';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import morgan from 'morgan';
-import jwt from 'express-jwt';
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const config = require('../webpack.config.dev.js');
+const serverConfig = require('./config');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const jwt = require('express-jwt');
 
 const app = express();
 const compiler = webpack(config);
@@ -15,7 +14,7 @@ const compiler = webpack(config);
 const isProduction = process.env.NODE_ENV === 'production';
 
 const authCheck = jwt({
-    secret: new Buffer(serverConfig.authCheck, 'base64'),
+    secret: new Buffer(serverConfig.authCheck || 'haha', 'base64'),
     audience: 'BjlDBoIyhcstbiblQiyiV3g1vd8xffhR'
 });
 
@@ -33,15 +32,14 @@ if (!isProduction) {
 }
 
 // App Setup
-app.use(cors());
 app.use(morgan('combined'));
 app.use(bodyParser.json()); //
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/../app/public')));
 
-//routes
-import bookRoutes from './routes/books';
-import userRoutes from './routes/user';
+//route
+const bookRoutes = require('./routes/books');
+const userRoutes = require('./routes/user');
 
 app.use('/books', authCheck, bookRoutes);
 app.use('/user', authCheck, userRoutes);

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     secretKey: process.env.SECRET_KEY || 'DevSecretKey',
     authCheck: process.env.AUTH_CHECK,
     port: process.env.PORT || 3000,

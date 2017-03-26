@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "My Book Haven, book manager app",
   "engines": {
-    "node": "6.0.0"
+    "node": "7.7.4"
   },
   "scripts": {
     "clean": "rimraf app/public/build",
     "build:webpack": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
-    "start": "node server_es6.js",
+    "start": "node server/server.js",
     "lint": "eslint app",
     "test": "mocha --reporter spec testSetup.js \"app/**/*.spec.js\"",
     "test:watch": "npm test -- --watch",
