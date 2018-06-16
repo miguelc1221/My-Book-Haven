@@ -4,7 +4,7 @@ The purpose of this project was to build an app where I can keep track of books 
 
 Demo http://mybookhaven.herokuapp.com/
 
-##Tech##
+## Tech
 * React             
 * React-Router
 * Redux
@@ -13,11 +13,11 @@ Demo http://mybookhaven.herokuapp.com/
 * ExpressJs
 * MongoDB
 
-##Don't want to register? No Problem!##
+## Don't want to register? No Problem!
 
 ```
   Guest email: Guest1221@gmail.com
   Guest Password: 123456
 ```
-##In Progress##
+## In Progress
 * Tests
